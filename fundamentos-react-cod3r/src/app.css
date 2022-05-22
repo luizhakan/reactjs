@@ -1,0 +1,11 @@
+.App {
+    display: flex;
+    text-align: center;
+    font-size: 1.3rem;
+    color: white;
+    flex-wrap: wrap;
+}
+
+body{
+    background: rgb(53, 52, 52);
+}
