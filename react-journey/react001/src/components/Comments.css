@@ -1,0 +1,25 @@
+.Comments{
+    border: thin solid gray;
+    border-radius: 5px;
+    padding: 10px;
+    min-width: 400px;
+    min-height: 150px;
+    box-shadow: 0px 0px 8px aquamarine;
+}
+
+h4{
+    font-weight: 900;
+    color: rgb(0, 0, 0);
+}
+
+p{
+    color: rgb(197, 181, 181);
+    padding-top: 5px;
+}
+
+#autor{
+    color: rgb(197, 181, 181);
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    text-align: end;
+}
