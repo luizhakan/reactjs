@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function zeroUmHooks() {
+export default function ZeroUmHooks() {
   const [valor, setValor] = useState(0);
 
   const adicionar = () => {

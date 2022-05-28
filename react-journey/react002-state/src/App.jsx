@@ -1,17 +1,17 @@
 import "./App.css";
 import React from "react";
-import zeroUmHooks from "./components/zeroUmHooks";
-import zeroDoisHooks from "./components/zeroDoisHooks";
-import zeroTresHooks from "./components/zeroTresHooks";
-import useStateStrObj from "./components/useStateStrObj";
+import ZeroUmHooks from "./components/ZeroUmHooks";
+import ZeroDoisHooks from "./components/ZeroDoisHooks";
+import ZeroTresHooks from "./components/ZeroTresHooks";
+import UseStateStrObj from "./components/UseStateStrObj";
 
 export default function App() {
   return (
     <>
-      {/* {zeroUmHooks()}
-      {zeroDoisHooks()}
-      {zeroTresHooks()} */}
-      {useStateStrObj()}
+      <ZeroUmHooks />
+      <ZeroDoisHooks />
+      <ZeroTresHooks />
+      <UseStateStrObj />
     </>
   );
 }

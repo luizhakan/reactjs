@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function zeroTresHooks() {
+export default function ZeroTresHooks() {
   const [valor, setValor] = useState(() => {
     return 0;
   });

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function useStateStrObj() {
+export default function UseStateStrObj() {
   const [user, setUser] = useState({
     nome: "Luiz",
     pontos: 0,

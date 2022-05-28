@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function zeroDoisHooks() {
+export default function ZeroDoisHooks() {
   const [valor, setValor] = useState(0);
 
   const subtrair = () => {
