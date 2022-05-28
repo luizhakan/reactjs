@@ -1,0 +1,21 @@
+.container ul{
+    list-style-type: none;
+    color: wheat;
+    background: transparent;
+    border: thin solid purple;
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px purple;
+}
+
+.titulos{
+    display: inline-block;
+}
+
+.row{
+    text-align: center;
+}
+
+.card-title{
+    font-weight: 900;
+    color: red;
+}
