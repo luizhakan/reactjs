@@ -1,0 +1,20 @@
+body{
+  padding: 50px;
+  background: black;
+  color: aquamarine;
+  padding-bottom: 500px;
+}
+
+h1{
+  font-family: 'Times New Roman', Times, serif;
+}
+
+p{
+  background: rgb(72, 69, 69);
+  padding: 10px;
+}
+
+ul{
+  list-style-type: none;
+  font-size: 20px;
+}
