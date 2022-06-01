@@ -5,7 +5,7 @@ Curso de React do Hora de Codar, ministrado pelo professor Matheus Battisti
 Cronograma :
 
 - [x] 03 até 08 [58min]
-- [] 09 até 13 [52min]
+- [x] 09 até 13 [52min]
 - [] 14 até 18 [1h]
 - [] 19 até 22 [51min]
 - [] 23 até 26 [51min]
