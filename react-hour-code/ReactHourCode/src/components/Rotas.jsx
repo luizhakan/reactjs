@@ -1,9 +1,11 @@
+// não recomendo fazer isso, esta estrutura deve estar no App, porém eu estou salvando somente pra fins estudantis
+
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/pages/Home";
 import Empresa from "./components/pages/Empresa";
 import Contato from "./components/pages/Contato";
 
-function App() {
+export default function Rotas() {
   return (
     <Router>
       <ul>
@@ -27,4 +29,3 @@ function App() {
     </Router>
   );
 }
-export default App;
