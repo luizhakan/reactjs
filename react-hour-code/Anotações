@@ -1,0 +1,36 @@
+- JSX
+O JSX é como um HTML, porém dentro do código JavaScript, é a principal maneira de escrever HTML com o React. Podemos interpolar variáveis, inserindo {}, é possível também executar funções em JSX, inserir valores em atributos de tags também é valido em JSX.
+
+- Componentes
+Permite dividir a aplicação em partes, os componentes renderizam JSX, assim como o App.jsx (que é um componente). É necessário criar um arquivo de componente, e importá-lo onde for utilizar, normalmente ficam em uma pasta chamada components.
+
+- Props
+As props são valores passado para componentes, podemos deixá-los dinâmicos, ou seja, mudando a execução por causa do valor da prop. O valor é passado como um atributo na chamada do componente, e precisa ser resgatado dentro de uma propriedade/argumento chamada props na função de definição do componente. As props são somente de leituras!
+
+- Adicionando CSS
+O CSS pode ser adicionado de forma global na aplicação, por meio de arquivo index.css por exemplo, porém é possivel estilizar a nível de componentes, utiliza o CSS modules para isso. Basta criar um arquivo como: Componente.module.css, e chamar este CSS no componente.
+
+- Fragmentos
+Os React Fragments permite a criação de um componente sem elemento pai, o propósito é descomplicar os nós do DOM. A sintáxe é <> e </>, não há um nome para a tag, é feito no próprio JSX.
+
+- useState
+O useState é um hook do React. Com ele conseguimos manusear o estado de um componente de forma simples, este hook funciona muito bem com eventos, podemos atrelar um evento a mudança de state.
+
+- Os métodos também são passados por props, ou seja, um componente filho pode ativar o método do seu ancestral, vamos acessar o método por meio de um evento. A sintaxe é a mesma de uma props de dados. props.meuEvento.
+
+- Renderização condicional
+Podemos atrelar a exibição de algum elemento a um if, esta ação é chamada de renderização condicional, envolvemos as tags em chaves {}. Como as chaves executam JS, criamos nossa condição. É possível usar o state para criar as condições.
+
+- Renderização de listas
+Para renderizar uma lista primeiramente preciso de um array, depois utilizamos a função map(ou forEach), para percorrer cada um dos itens, podendo renderizar algo na tela, é possível unir operadores condicionais com a renderização de listas.
+
+- State Lift
+stateLift consiste em centralizar o useState no componente pai e alterá-los no componente filho, é uma técnica para compartilhar o state. é normal vários componentes dependerem do mesmo estado, então precisamos elevar o nível do mesmo a um componente pai, então centralizamos o state no componente pai, e definimos quem usa e quem define (o setState)
+
+- React Router
+O React Router é um pacote para mudança de URLs da aplicação, podemos assim acessar outras views, sem o dar reload na página, trocando apenas uma parte do layout da aplicação, ou seja, o que muda de view para view. É preciso instalar este pacote no projeto (npm install react-router-dom), e também realizar algumas mudanças em como o App é estruturado.
+para usar o react router, também é necessário importar isso : import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+o switch foi substituido pelo Routes
+
+- React Icons
+O React Icons é um pacote de ícones externo. Precisamos instalar pelo npm. Ele permite adicionar ícones ao projeto com uma sintaxe parecida a de componentes, além disso há uma grande quantidade ícones disponíveis.
