@@ -1,11 +1,12 @@
 import styles from "./SubmitButton.module.css";
 
 export default function SubmitButton({
-  text
+  text,
+  handleSubmit
 }) {
   return (
     <div>
-      <button className={styles.button}>{text}</button>
+      <button onClick={handleSubmit} className={styles.button}>{text}</button>
     </div>
   );
 }
