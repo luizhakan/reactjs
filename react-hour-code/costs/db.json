@@ -1,14 +1,26 @@
 {
   "projects": [
     {
-      "Nome": "CDVU",
-      "budget": "12000",
+      "name": "asassa",
       "category": {
-        "id": "2"
+        "id": "3",
+        "name": "Design"
       },
+      "budget": "123312",
       "cost": 0,
       "services": [],
       "id": 1
+    },
+    {
+      "name": "asassa",
+      "budget": "14423",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 2
     }
   ],
   "categories": [

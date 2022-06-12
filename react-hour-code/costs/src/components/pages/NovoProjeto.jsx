@@ -22,7 +22,8 @@ export default function NovoProjeto() {
     ).then(data => {
       console.log(data)
       // redirecionar
-      navigate('/projetos', {message: "Projeto criado com sucesso!"})
+      navigate('/projetos', {state: {message: "Projeto criado com sucesso!"}})
+      console.log(message);
     }).catch(erro => console.log(erro))
   }
 
