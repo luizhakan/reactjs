@@ -10,5 +10,5 @@ Cronograma :
 - [x] 19 até 22 [51min]
 - [x] 23 até 26 [51min]
 - [x] 27 até 31 [59min]
-- [] 32 até 36 [57min]
-- [] Conclusão [13min]
+- [x] 32 até 36 [57min]
+- [x] Conclusão [13min]
