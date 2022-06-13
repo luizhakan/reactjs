@@ -26,9 +26,9 @@ export default function ProjectCard({
       <div>
         <ul className={styles.list}>
           <li className={styles.item}>
-            <button>
+            <Link to={`/project/${id}`}>
               <BsPencil /> Editar
-            </button>
+            </Link>
           </li>
           <li className={styles.item}>
             <button onClick={remove}>

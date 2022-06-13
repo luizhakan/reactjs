@@ -1,19 +1,38 @@
 {
   "projects": [
     {
-      "name": "asassa",
+      "name": "CDVU MANAGER v2",
+      "budget": "500",
       "category": {
-        "id": "3",
-        "name": "Design"
+        "id": "2",
+        "name": "Desenvolvimento"
       },
-      "budget": "123312",
-      "cost": 0,
-      "services": [],
+      "cost": 462,
+      "services": [
+        {
+          "name": "Teste validação",
+          "cost": "12",
+          "description": "Teste",
+          "id": "bbc2311d-3335-4f1b-9bb2-5fb4196f4de7"
+        },
+        {
+          "name": "Teste validação form",
+          "cost": "150",
+          "description": "Vai fazer validação de formulário",
+          "id": "602657e3-4fbc-436b-be00-aa60519ee441"
+        },
+        {
+          "name": "Dev ReactJS",
+          "cost": "300",
+          "description": "Dev",
+          "id": "db18c4be-4508-4ef8-a208-74d3a39f5556"
+        }
+      ],
       "id": 1
     },
     {
-      "name": "asassa",
-      "budget": "14423",
+      "name": "CDVU MANAGER",
+      "budget": "5000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
