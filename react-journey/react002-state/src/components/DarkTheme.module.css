@@ -1,0 +1,14 @@
+.tema{
+    margin: 0%;
+    padding: 0%;
+    font-size: 1.2em;
+    color: red;
+}
+
+.light{
+    margin: 0%;
+    padding: 0%;
+    font-size: 1.2em;
+    color: #222;
+    background: white;
+}
