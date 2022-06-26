@@ -1,11 +1,11 @@
 import "./App.css";
 import React from "react";
-import DarkTheme from "./components/DarkTheme";
+import Tabuada from "./components/Tabuada";
 
 export default function App() {
   return (
     <>
-      <DarkTheme />
+      <Tabuada />
     </>
   );
 }
