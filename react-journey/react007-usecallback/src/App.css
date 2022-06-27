@@ -1,0 +1,22 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+button{
+    padding: 0.4%;
+    color:aquamarine;
+    font-weight: 700;
+    background:radial-gradient(#222, #888);
+}
+
+h1{
+    font-size: "1.4em";
+    padding-top: 0.4%;
+}
+
+p{
+    font-size: "1.2em";
+    padding-top: 0.4%;
+    font-weight: 600;
+}
