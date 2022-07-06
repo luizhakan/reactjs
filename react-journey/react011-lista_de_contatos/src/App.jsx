@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ListaDeContatos from "./components/ListaDeContatos";
 import { v4 as uuid } from "uuid";
 
@@ -8,6 +8,18 @@ export default function App() {
 
   const inputNome = useRef();
   const inputTelefone = useRef();
+
+  // atualizar a lista de contatos no localStorage
+  useEffect(() => {
+    if (localStorage.getItem("meus_contatos") !== null) {
+      setListaDeContatos(JSON.parse(localStorage.getItem("meus_contatos")));
+    }
+  }, []);
+
+  // persistência do state
+  useEffect(() => {
+    localStorage.setItem("meus_contatos", JSON.stringify(listaDeContatos));
+  }, [listaDeContatos]);
 
   return (
     <>
@@ -36,6 +48,32 @@ export default function App() {
           onChange={(e) => {
             setContato({ ...contato, telefone: e.target.value });
           }}
+          // adicionar contato com a tecla Enter
+          onKeyUp={(e) => {
+            if (e.code === "Enter") {
+              // validação dos campos
+              if (contato.nome === "" || contato.telefone === "") {
+                return alert("Preencha os campos");
+              }
+              // verificar se o contato existe
+              let duplicado = listaDeContatos.find(
+                (ct) =>
+                  ct.nome === contato.nome && ct.telefone === contato.telefone
+              );
+              if (typeof duplicado !== "undefined") {
+                inputTelefone.current.focus();
+                alert("Nome ou número já existente!");
+                return;
+              } else {
+                // adicionar contato
+                setListaDeContatos([...listaDeContatos, contato]);
+                // limpar contato
+                setContato({ nome: "", telefone: "" });
+                // colocar o focus
+                inputNome.current.focus();
+              }
+            }
+          }}
           minLength={9}
           maxLength={11}
           required
@@ -54,16 +92,16 @@ export default function App() {
           );
           if (typeof duplicado !== "undefined") {
             inputTelefone.current.focus();
+            alert("Nome ou número já existente!");
             return;
+          } else {
+            // adicionar contato
+            setListaDeContatos([...listaDeContatos, contato]);
+            // limpar contato
+            setContato({ nome: "", telefone: "" });
+            // colocar o focus
+            inputNome.current.focus();
           }
-
-          // adicionar contato
-          setListaDeContatos([...listaDeContatos, contato]);
-
-          // limpar contato
-          setContato({ nome: "", telefone: "" });
-          // colocar o focus
-          inputNome.current.focus();
         }}
       >
         Adicionar contato
