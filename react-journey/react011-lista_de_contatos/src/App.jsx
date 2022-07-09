@@ -50,7 +50,7 @@ export default function App() {
           }}
           // adicionar contato com a tecla Enter
           onKeyUp={(e) => {
-            if (e.code === "Enter") {
+            if (e.code === "Enter" || e.code === "NumpadEnter") {
               // validação dos campos
               if (contato.nome === "" || contato.telefone === "") {
                 return alert("Preencha os campos");
@@ -106,6 +106,16 @@ export default function App() {
       >
         Adicionar contato
       </button>
+      <button
+        onClick={() => {
+          {
+            /* limpar toda a lista */
+          }
+          setListaDeContatos([]);
+        }}
+      >
+        Limpar lista
+      </button>
       <hr />
       {/* render da lista */}
       {listaDeContatos.map((cont) => {
@@ -114,6 +124,14 @@ export default function App() {
             chave={uuid()}
             nome={cont.nome}
             telefone={cont.telefone}
+            remover={(ctRemover) => {
+              let temporario = listaDeContatos.filter(
+                (ct) =>
+                  ct.nome !== ctRemover.nome &&
+                  ct.telefone !== ctRemover.telefone
+              );
+              setListaDeContatos(temporario);
+            }}
           />
         );
       })}
