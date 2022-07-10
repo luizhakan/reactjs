@@ -3,7 +3,7 @@ import ListaDeContatos from "./components/ListaDeContatos";
 import { v4 as uuid } from "uuid";
 
 export default function App() {
-  const [contato, setContato] = useState({ nome: "", telefone: "" });
+  const [contato, setContato] = useState({ id: "", nome: "", telefone: "" });
   const [listaDeContatos, setListaDeContatos] = useState([]);
 
   const inputNome = useRef();
@@ -65,8 +65,11 @@ export default function App() {
                 alert("Nome ou número já existente!");
                 return;
               } else {
-                // adicionar contato
-                setListaDeContatos([...listaDeContatos, contato]);
+                // adicionar contato, e um id para o contato
+                setListaDeContatos([
+                  ...listaDeContatos,
+                  { ...contato, id: uuid() },
+                ]);
                 // limpar contato
                 setContato({ nome: "", telefone: "" });
                 // colocar o focus
@@ -108,9 +111,7 @@ export default function App() {
       </button>
       <button
         onClick={() => {
-          {
-            /* limpar toda a lista */
-          }
+          // limpar toda a lista
           setListaDeContatos([]);
         }}
       >
@@ -121,16 +122,14 @@ export default function App() {
       {listaDeContatos.map((cont) => {
         return (
           <ListaDeContatos
-            chave={uuid()}
+            key={cont.id}
+            id={cont.id}
             nome={cont.nome}
             telefone={cont.telefone}
-            remover={(ctRemover) => {
-              let temporario = listaDeContatos.filter(
-                (ct) =>
-                  ct.nome !== ctRemover.nome &&
-                  ct.telefone !== ctRemover.telefone
-              );
+            remover={(id) => {
+              let temporario = listaDeContatos.filter((ct) => ct.id !== id);
               setListaDeContatos(temporario);
+              console.log(temporario)
             }}
           />
         );

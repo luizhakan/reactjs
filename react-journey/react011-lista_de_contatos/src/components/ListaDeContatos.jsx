@@ -1,8 +1,8 @@
-export default function ListaDeContatos({ nome, telefone, chave, remover }) {
+export default function ListaDeContatos({ nome, telefone, id, remover }) {
   return (
-    <div chave={chave}>
+    <div>
       {nome} - {telefone} <span onClick={() => {
-        remover({nome: nome, telefone: telefone})
+        remover(id)
       }}>[x]</span>
     </div>
   );
