@@ -1,0 +1,35 @@
+.icone{
+display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  cursor: pointer;
+}
+
+.bg_darke{
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    height: 100vh;
+    color: white;
+}
+
+.bg_darke body{
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    height: 100vh;
+    color: white;
+}
+
+.bg_lighte {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+    height: 100vh;
+}
+.bg_lighte body{
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+    height: 100vh;
+}

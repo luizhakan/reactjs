@@ -1,9 +1,11 @@
+import {FaPhone, FaTrash, FaUser} from 'react-icons/fa';
+
 export default function ListaDeContatos({ nome, telefone, id, remover }) {
   return (
-    <div>
-      {nome} - {telefone} <span onClick={() => {
+    <div className='col p-2 text-start'>
+      <FaUser className='me-3'/> {nome} | <FaPhone className='me-3' /> {telefone} <span onClick={() => {
         remover(id)
-      }}>[x]</span>
+      }}><FaTrash /></span>
     </div>
   );
 }

@@ -1,0 +1,9 @@
+.titulo{
+    padding: 20px;
+    background: rgb(27, 42, 74);
+    color: white;
+}
+
+span{
+    cursor: pointer;
+}
