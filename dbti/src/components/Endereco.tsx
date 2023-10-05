@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { alterar } from "../service/services";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Endereco({ id, logradouro, bairro, cidade, uf, cep, condicao }: any) {
@@ -11,7 +12,30 @@ function Endereco({ id, logradouro, bairro, cidade, uf, cep, condicao }: any) {
     cep: cep,
   });
 
-  console.log(edicaoEnderecoProfissional);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleAlterarEndereco = (e: any) => {
+    const { name, value } = e.target;
+
+    setEdicaoEnderecoProfissional((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const endereco = {
+    id: id,
+    endereco: {
+      logradouro: edicaoEnderecoProfissional.logradouro,
+      bairro: edicaoEnderecoProfissional.bairro,
+      cidade: edicaoEnderecoProfissional.cidade,
+      uf: edicaoEnderecoProfissional.uf,
+      cep: edicaoEnderecoProfissional.cep,
+    },
+  };
+  
+  if (!condicao) {
+    alterar(id, endereco);
+  }
 
   return (
     <div>
@@ -19,58 +43,38 @@ function Endereco({ id, logradouro, bairro, cidade, uf, cep, condicao }: any) {
         <div className="flex flex-col">
           <input
             type="text"
+            name="logradouro"
             className="mb-4 text-black"
-            value={logradouro}
-            onChange={(e) => {
-              setEdicaoEnderecoProfissional((prevState) => ({
-                ...prevState,
-                logradouro: e.target.value,
-              }));
-            }}
+            value={edicaoEnderecoProfissional.logradouro}
+            onChange={handleAlterarEndereco}
           />
           <input
+            name="bairro"
             type="text"
             className="mb-4 text-black"
-            value={bairro}
-            onChange={(e) => {
-              setEdicaoEnderecoProfissional((prevState) => ({
-                ...prevState,
-                bairro: e.target.value,
-              }));
-            }}
+            value={edicaoEnderecoProfissional.bairro}
+            onChange={handleAlterarEndereco}
           />
           <input
+            name="cidade"
             type="text"
             className="mb-4 text-black"
-            value={cidade}
-            onChange={(e) => {
-              setEdicaoEnderecoProfissional((prevState) => ({
-                ...prevState,
-                cidade: e.target.value,
-              }));
-            }}
+            value={edicaoEnderecoProfissional.cidade}
+            onChange={handleAlterarEndereco}
           />
           <input
+            name="uf"
             type="text"
             className="mb-4 text-black"
-            value={uf}
-            onChange={(e) => {
-              setEdicaoEnderecoProfissional((prevState) => ({
-                ...prevState,
-                uf: e.target.value,
-              }));
-            }}
+            value={edicaoEnderecoProfissional.uf}
+            onChange={handleAlterarEndereco}
           />
           <input
+            name="cep"
             type="text"
             className="mb-4 text-black"
-            value={cep}
-            onChange={(e) => {
-              setEdicaoEnderecoProfissional((prevState) => ({
-                ...prevState,
-                cep: e.target.value,
-              }));
-            }}
+            value={edicaoEnderecoProfissional.cep}
+            onChange={handleAlterarEndereco}
           />
         </div>
       ) : (

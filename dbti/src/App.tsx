@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { Profissional } from "./interface/Profissional";
 import { Especialidade } from "./enum/Especialidades";
 
 import { BiInfoCircle, BiSolidTrashAlt } from "react-icons/bi";
 import { FaEdit } from "react-icons/fa";
-import { alterar, consultar, excluir } from "./service/services";
+import { consultar, excluir } from "./service/services";
 import Endereco from "./components/Endereco";
 
 function formatarEspecialidade(especialidade: Especialidade) {
@@ -41,15 +40,6 @@ function App(): JSX.Element {
     useState<{ [key: number]: boolean }>({});
   const [abrirInput, setAbrirInput] = useState(false);
   const [alterarProfissional, setAlterarProfissional] = useState({});
-
-  const [edicaoEnderecoProfissional, setEdicaoEnderecoProfissional] = useState({
-    id: 0,
-    logradouro: "",
-    bairro: "",
-    cidade: "",
-    uf: "",
-    cep: "",
-  });
 
   useEffect(() => {
     consultar("http://localhost:8080/profissional", `?page=${pagina}`).then(
@@ -100,7 +90,7 @@ function App(): JSX.Element {
                   />
                 </div>
                 <Endereco
-                  id={profissional.endereco.id}
+                  id={profissional.id}
                   logradouro={profissional.endereco.logradouro}
                   bairro={profissional.endereco.bairro}
                   cidade={profissional.endereco.cidade}

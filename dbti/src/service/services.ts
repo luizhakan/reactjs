@@ -27,7 +27,8 @@ export function excluir(id: string) {
   });
 }
 
-export function alterar(id: number, profissional: Profissional) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function alterar(id: number, profissional: any) {
   const data = {
     id,
     ...profissional,
