@@ -1,35 +1,11 @@
 import { useEffect, useState } from "react";
 import { Especialidade } from "./enum/Especialidades";
 
-import { BiInfoCircle, BiSolidTrashAlt } from "react-icons/bi";
+import { BiInfoCircle } from "react-icons/bi";
 import { FaEdit } from "react-icons/fa";
-import { consultar, excluir } from "./service/services";
+import { consultar } from "./service/services";
 import Endereco from "./components/Endereco";
-
-function formatarEspecialidade(especialidade: Especialidade) {
-  switch (especialidade) {
-    case Especialidade.SEGURANCA_CIBERNETICA:
-      return "Segurança Cibernética";
-    case Especialidade.DESENVOLVIMENTO_DE_SOFTWARE:
-      return "Desenvolvimento de Software";
-    case Especialidade.ANALISE_DE_DADOS:
-      return "Análise de Dados";
-    case Especialidade.INFRAESTRUTURA:
-      return "Infraestrutura";
-    case Especialidade.SUPORTE_TECNICO:
-      return "Suporte Técnico";
-    case Especialidade.DESIGN:
-      return "Design";
-    case Especialidade.MARKETING_DIGITAL:
-      return "Marketing Digital";
-    case Especialidade.DEVOPS:
-      return "DevOps";
-    case Especialidade.GESTAO_DE_TI:
-      return "Gestão de TI";
-    default:
-      return "";
-  }
-}
+import DadosPessoais from "./components/DadosPessoais";
 
 function App(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -52,8 +28,7 @@ function App(): JSX.Element {
   function maisInformacoesF(profissionalId: number) {
     setMaisInformacoesProfissional((prevState) => ({
       ...prevState,
-      [profissionalId]:
-        !prevState[profissionalId] || !prevState[profissionalId],
+      [profissionalId]: !prevState[profissionalId],
     }));
   }
 
@@ -101,44 +76,14 @@ function App(): JSX.Element {
               </div>
             ) : (
               <>
-                <div className="flex flex-col">
-                  <img
-                    src="http://lorempixel.com.br/150/150"
-                    alt={profissional.nome}
-                    className="w-full h-[150px]"
-                  />
-                </div>
-                <div className="flex justify-between  p-2">
-                  <div className="flex-col">
-                    <div className="flex items-center">
-                      <h2 className="text-2xl font-bold mb-2">
-                        {profissional.nome}
-                      </h2>
-                      <BiSolidTrashAlt
-                        className="cursor-pointer ml-2"
-                        onClick={() => {
-                          excluir(profissional.id);
-                          profissionais.splice(profissional, 1);
-                          setProfissionais([...profissionais]);
-                        }}
-                      />
-                      <BiInfoCircle
-                        title="Informações de endereço"
-                        className="cursor-pointer ml-2"
-                        onClick={() => maisInformacoesF(profissional.id)}
-                      />
-                      <FaEdit className="cursor-pointer ml-2" />
-                    </div>
-
-                    <p className="mb-4">{profissional.email}</p>
-                    <p className="mb-4">
-                      {formatarEspecialidade(profissional.especialidade)}
-                    </p>
-                    <h2 className="text-2xl font-bold mb-2">
-                      {profissional.telefone}
-                    </h2>
-                  </div>
-                </div>
+                <DadosPessoais
+                  id={profissional.id}
+                  nome={profissional.nome}
+                  email={profissional.email}
+                  telefone={profissional.telefone}
+                  especialidade={profissional.especialidade}
+                  maisInformacoesF={() => maisInformacoesF(profissional.id)}
+                />
               </>
             )}
           </div>

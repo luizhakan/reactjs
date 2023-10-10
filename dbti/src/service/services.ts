@@ -1,5 +1,3 @@
-import { Profissional } from "../interface/Profissional";
-
 export function consultar(url: string, query?: string) {
   if (query) {
     url += `${query}`;
