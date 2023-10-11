@@ -28,7 +28,7 @@ export function excluir(id: string) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function alterar(id: number, profissional: any) {
   const data = {
-    id,
+    id: id,
     ...profissional,
   };
 
@@ -39,4 +39,5 @@ export function alterar(id: number, profissional: any) {
     },
     body: JSON.stringify(data),
   });
+  console.log(data);
 }
