@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { consultar } from "./service/services";
 import Endereco from "./components/Endereco";
 import DadosPessoais from "./components/DadosPessoais";
+import CadastrarProfissional from "./components/CadastrarProfissional";
 
 function App(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,6 +29,7 @@ function App(): JSX.Element {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen p-8">
+      <CadastrarProfissional />
       {profissionais && profissionais.length > 0 ? (
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         profissionais.map((profissional: any) => (

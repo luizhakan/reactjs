@@ -1,3 +1,5 @@
+import { ProfissionalCadastro } from "../interface/ProfissionalCadastro";
+
 export function consultar(url: string, query?: string) {
   if (query) {
     url += `${query}`;
@@ -34,6 +36,34 @@ export function alterar(id: number, profissional: any) {
 
   fetch(`http://localhost:8080/profissional`, {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  console.log(data);
+}
+
+export function cadastrar(profissional: ProfissionalCadastro) {
+  const data: ProfissionalCadastro = {
+    nome: profissional.nome,
+    email: profissional.email,
+    registro: profissional.registro,
+    especialidade: profissional.especialidade,
+    telefone: profissional.telefone,
+    endereco: {
+      logradouro: profissional.endereco.logradouro,
+      bairro: profissional.endereco.bairro,
+      cidade: profissional.endereco.cidade,
+      uf: profissional.endereco.uf,
+      complemento: profissional.endereco.complemento,
+      cep: profissional.endereco.cep,
+      numero: profissional.endereco.numero,
+    },
+  };
+
+  fetch(`http://localhost:8080/profissional`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
