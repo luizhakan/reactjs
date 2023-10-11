@@ -75,9 +75,11 @@ function DadosPessoais({
   };
 
   return (
-    <div className="rounded-lg p-4 mb-4">
+    <div className="rounded-lg shadow-lg p-4 mb-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold mb-2">{profissional.nome}</h2>
+        <h2 className="text-xl md:text-2xl font-bold mb-2">
+          {profissional.nome}
+        </h2>
         <BiInfoCircle
           title="Informações de contato"
           className="cursor-pointer ml-2"
@@ -101,67 +103,75 @@ function DadosPessoais({
           />
         )}
       </div>
-      {isEditing ? (
-        <>
-          <label htmlFor="nome">
-            Nome:{" "}
-            <input
-              type="text"
-              name="nome"
-              className="mb-4 text-black"
-              value={profissional.nome}
+      <div className="md:flex md:items-center">
+        {isEditing ? (
+          <div className="w-full md:w-1/2 md:pr-4">
+            <label htmlFor="nome" className="mb-4 text-sm">
+              Nome:
+              <input
+                type="text"
+                name="nome"
+                className="block w-full border border-gray-300 rounded-md p-2"
+                value={profissional.nome}
+                onChange={handleAlterarProfissional}
+              />
+            </label>
+            <label htmlFor="email" className="mb-4 text-sm">
+              Email:
+              <input
+                name="email"
+                type="text"
+                className="block w-full border border-gray-300 rounded-md p-2"
+                value={profissional.email}
+                onChange={handleAlterarProfissional}
+              />
+            </label>
+            <label htmlFor="telefone" className="mb-4 text-sm">
+              Telefone:
+              <input
+                name="telefone"
+                type="text"
+                className="block w-full border border-gray-300 rounded-md p-2"
+                value={profissional.telefone}
+                onChange={handleAlterarProfissional}
+              />
+            </label>
+            <select
+              name="especialidade"
+              className="block w-full border border-gray-300 rounded-md p-2"
+              value={profissional.especialidade}
               onChange={handleAlterarProfissional}
-            />
-          </label>
-          <label htmlFor="email">
-            Email:{" "}
-            <input
-              name="email"
-              type="text"
-              className="mb-4 text-black"
-              value={profissional.email}
-              onChange={handleAlterarProfissional}
-            />
-          </label>
-          <label htmlFor="telefone">
-            Telefone:{" "}
-            <input
-              name="telefone"
-              type="text"
-              className="mb-4 text-black"
-              value={profissional.telefone}
-              onChange={handleAlterarProfissional}
-            />
-          </label>
-          <select
-            name="especialidade"
-            className="mb-4 text-black"
-            value={profissional.especialidade}
-            onChange={handleAlterarProfissional}
-          >
-            {Object.values(Especialidade).map((especialidade) => (
-              <option key={especialidade} value={especialidade}>
-                {formatarEspecialidade(especialidade)}
-              </option>
-            ))}
-          </select>
-        </>
-      ) : (
-        <>
-          <img
-            src="http://lorempixel.com.br/150/150"
-            alt={profissional.nome}
-            className="w-full h-[150px]"
-          />
-          <p className="flex items-center">
-            <BiMailSend /> {profissional.email}
-          </p>
-          <p>{formatarEspecialidade(profissional.especialidade)}</p>
-          <p className="flex items-center">
-            <BiPhone /> {profissional.telefone}
-          </p>
-        </>
-      )}
+            >
+              {Object.values(Especialidade).map((especialidade) => (
+                <option key={especialidade} value={especialidade}>
+                  {formatarEspecialidade(especialidade)}
+                </option>
+              ))}
+            </select>
+          </div>
+        ) : (
+          <div className="w-full md:w-1/2 md:pr-4">
+            <div className="text-center mb-4">
+              <img
+                src="http://lorempixel.com.br/200/200"
+                alt={profissional.nome}
+                className="w-40 h-40 mx-auto rounded-full"
+              />
+            </div>
+            <p className="flex items-center text-sm">
+              <BiMailSend className="mr-2" />
+              {profissional.email}
+            </p>
+            <p className="text-sm">
+              {formatarEspecialidade(profissional.especialidade)}
+            </p>
+            <p className="flex items-center text-sm">
+              <BiPhone className="mr-2" />
+              {profissional.telefone}
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

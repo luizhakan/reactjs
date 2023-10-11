@@ -47,12 +47,12 @@ function Endereco({
       endereco: editedAddress,
     };
     alterar(id, endereco);
-    setIsEditing(!isEditing);
+    setIsEditing(false);
     location.reload();
   };
 
   return (
-    <div>
+    <div className="rounded-lg p-4 mb-4">
       <div className="flex flex-col">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold mb-2">Endereço</h2>
@@ -63,7 +63,7 @@ function Endereco({
           />
           {isEditing ? (
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={handleSalvar}
             >
               Salvar
@@ -75,53 +75,67 @@ function Endereco({
             />
           )}
         </div>
-        {isEditing ? (
-          <>
-            <input
-              type="text"
-              name="logradouro"
-              className="mb-4 text-black"
-              value={editedAddress.logradouro}
-              onChange={handleAlterarEndereco}
-            />
-            <input
-              name="bairro"
-              type="text"
-              className="mb-4 text-black"
-              value={editedAddress.bairro}
-              onChange={handleAlterarEndereco}
-            />
-            <input
-              name="cidade"
-              type="text"
-              className="mb-4 text-black"
-              value={editedAddress.cidade}
-              onChange={handleAlterarEndereco}
-            />
-            <input
-              name="uf"
-              type="text"
-              className="mb-4 text-black"
-              value={editedAddress.uf}
-              onChange={handleAlterarEndereco}
-            />
-            <input
-              name="cep"
-              type="text"
-              className="mb-4 text-black"
-              value={editedAddress.cep}
-              onChange={handleAlterarEndereco}
-            />
-          </>
-        ) : (
-          <>
-            <p className="mb-4">Logradouro: {logradouro}</p>
-            <p className="mb-4">Bairro: {bairro}</p>
-            <p className="mb-4">Cidade: {cidade}</p>
-            <p className="mb-4">UF: {uf}</p>
-            <p className="mb-4">CEP: {cep}</p>
-          </>
-        )}
+        <div className="md:flex md:flex-wrap">
+          {isEditing ? (
+            <>
+              <div className="w-full md:w-1/2 pr-4 mb-4">
+                <input
+                  type="text"
+                  name="logradouro"
+                  className="block w-full border border-gray-300 rounded-md p-2"
+                  value={editedAddress.logradouro}
+                  onChange={handleAlterarEndereco}
+                />
+              </div>
+              <div className="w-full md:w-1/2 pr-4 mb-4">
+                <input
+                  name="bairro"
+                  type="text"
+                  className="block w-full border border-gray-300 rounded-md p-2"
+                  value={editedAddress.bairro}
+                  onChange={handleAlterarEndereco}
+                />
+              </div>
+              <div className="w-full md:w-1/2 pr-4 mb-4">
+                <input
+                  name="cidade"
+                  type="text"
+                  className="block w-full border border-gray-300 rounded-md p-2"
+                  value={editedAddress.cidade}
+                  onChange={handleAlterarEndereco}
+                />
+              </div>
+              <div className="w-full md:w-1/2 pr-4 mb-4">
+                <input
+                  name="uf"
+                  type="text"
+                  className="block w-full border border-gray-300 rounded-md p-2"
+                  value={editedAddress.uf}
+                  onChange={handleAlterarEndereco}
+                />
+              </div>
+              <div className="w-full md:w-1/2 pr-4 mb-4">
+                <input
+                  name="cep"
+                  type="text"
+                  className="block w-full border border-gray-300 rounded-md p-2"
+                  value={editedAddress.cep}
+                  onChange={handleAlterarEndereco}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="w-full md:w-1/2 pr-4 mb-4">
+                <p className="mb-4">Logradouro: {logradouro}</p>
+                <p className="mb-4">Bairro: {bairro}</p>
+                <p className="mb-4">Cidade: {cidade}</p>
+                <p className="mb-4">UF: {uf}</p>
+                <p className="mb-4">CEP: {cep}</p>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

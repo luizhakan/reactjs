@@ -33,14 +33,7 @@ function App(): JSX.Element {
       {profissionais && profissionais.length > 0 ? (
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         profissionais.map((profissional: any) => (
-          <div
-            key={profissional.id}
-            className={`flex flex-col ${
-              maisInformacoesProfissional[profissional.id]
-                ? "w-[200px] h-[280px]"
-                : "w-[300px] h-[330px]"
-            } mx-auto border-solid border-2 border-purple-500 rounded-sm mb-2`}
-          >
+          <div key={profissional.id} className={`flex flex-col mx-auto mb-2`}>
             {maisInformacoesProfissional[profissional.id] ? (
               <div className="flex flex-col p-2">
                 <Endereco
