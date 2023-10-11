@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import { Especialidade } from "./enum/Especialidades";
-
-import { BiInfoCircle } from "react-icons/bi";
-import { FaEdit } from "react-icons/fa";
 import { consultar } from "./service/services";
 import Endereco from "./components/Endereco";
 import DadosPessoais from "./components/DadosPessoais";
@@ -14,8 +10,6 @@ function App(): JSX.Element {
   const [totalPages, setTotalPages] = useState<number>(0);
   const [maisInformacoesProfissional, setMaisInformacoesProfissional] =
     useState<{ [key: number]: boolean }>({});
-  const [abrirInput, setAbrirInput] = useState(false);
-  const [alterarProfissional, setAlterarProfissional] = useState({});
 
   useEffect(() => {
     consultar("http://localhost:8080/profissional", `?page=${pagina}`).then(
@@ -30,11 +24,6 @@ function App(): JSX.Element {
       ...prevState,
       [profissionalId]: !prevState[profissionalId],
     }));
-  }
-
-  function abrirInputF(profissionalId: number) {
-    setAbrirInput(!abrirInput);
-    setAlterarProfissional(profissionalId);
   }
 
   return (
@@ -52,18 +41,6 @@ function App(): JSX.Element {
           >
             {maisInformacoesProfissional[profissional.id] ? (
               <div className="flex flex-col p-2">
-                <div className="flex justify-between items-center">
-                  <h2 className="text-2xl font-bold mb-2">Endereço</h2>
-                  <BiInfoCircle
-                    title="Informações de contato"
-                    className="cursor-pointer ml-2"
-                    onClick={() => maisInformacoesF(profissional.id)}
-                  />
-                  <FaEdit
-                    className="cursor-pointer ml-2"
-                    onClick={() => abrirInputF(profissional.id)}
-                  />
-                </div>
                 <Endereco
                   id={profissional.id}
                   logradouro={profissional.endereco.logradouro}
@@ -71,7 +48,7 @@ function App(): JSX.Element {
                   cidade={profissional.endereco.cidade}
                   uf={profissional.endereco.uf}
                   cep={profissional.endereco.cep}
-                  condicao={abrirInput}
+                  maisInformacoesF={() => maisInformacoesF(profissional.id)}
                 />
               </div>
             ) : (

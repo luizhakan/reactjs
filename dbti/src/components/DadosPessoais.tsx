@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   BiInfoCircle,
   BiMailSend,
@@ -20,77 +20,89 @@ function DadosPessoais({
   id: number;
   nome: string;
   email: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  especialidade: any;
+  especialidade: Especialidade;
   telefone: string;
   maisInformacoesF: () => void;
-  condicao: boolean;
 }) {
+  const [isEditing, setIsEditing] = useState(false);
   const [profissional, setProfissional] = useState({
-    id: id,
-    nome: nome,
-    email: email,
-    especialidade: especialidade,
-    telefone: telefone,
+    id,
+    nome,
+    email,
+    especialidade,
+    telefone,
   });
 
-  const [condicao, setCondicao] = useState(false);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function handleExcluir(profissional: any) {
-    excluir(profissional);
-    window.location.reload();
-  }
-
-  function formatarEspecialidade(especialidade: Especialidade) {
-    switch (especialidade) {
-      case Especialidade.SEGURANCA_CIBERNETICA:
-        return "Segurança Cibernética";
-      case Especialidade.DESENVOLVIMENTO_DE_SOFTWARE:
-        return "Desenvolvimento de Software";
-      case Especialidade.ANALISE_DE_DADOS:
-        return "Análise de Dados";
-      case Especialidade.INFRAESTRUTURA:
-        return "Infraestrutura";
-      case Especialidade.SUPORTE_TECNICO:
-        return "Suporte Técnico";
-      case Especialidade.DESIGN:
-        return "Design";
-      case Especialidade.MARKETING_DIGITAL:
-        return "Marketing Digital";
-      case Especialidade.DEVOPS:
-        return "DevOps";
-      case Especialidade.GESTAO_DE_TI:
-        return "Gestão de TI";
-      default:
-        return "";
-    }
-  }
-
-  function handleAlterarCondicao() {
-    setCondicao(!condicao);
-  }
-
-  const dadosPessoais = {
-    id: profissional.id,
-    nome: profissional.nome,
-    email: profissional.email,
-    especialidade: profissional.especialidade,
-    telefone: profissional.telefone,
+  const handleExcluir = () => {
+    excluir(id);
+    location.reload();
   };
 
-  if (!condicao) {
-    alterar(profissional.id, dadosPessoais);
-  }
+  const formatarEspecialidade = (especialidade: Especialidade) => {
+    const especialidades = {
+      [Especialidade.SEGURANCA_CIBERNETICA]: "Segurança Cibernética",
+      [Especialidade.DESENVOLVIMENTO_DE_SOFTWARE]:
+        "Desenvolvimento de Software",
+      [Especialidade.ANALISE_DE_DADOS]: "Análise de Dados",
+      [Especialidade.INFRAESTRUTURA]: "Infraestrutura",
+      [Especialidade.SUPORTE_TECNICO]: "Suporte Técnico",
+      [Especialidade.DESIGN]: "Design",
+      [Especialidade.MARKETING_DIGITAL]: "Marketing Digital",
+      [Especialidade.DEVOPS]: "DevOps",
+      [Especialidade.GESTAO_DE_TI]: "Gestão de TI",
+    };
+
+    return especialidades[especialidade] || "";
+  };
+
+  const handleAlterarCondicao = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleAlterarSalvar = () => {
+    alterar(id, profissional);
+    setIsEditing(false);
+  };
+
+  const handleAlterarProfissional = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    setProfissional((prevProfissional) => ({
+      ...prevProfissional,
+      [name]: value,
+    }));
+  };
 
   return (
-    <>
-      {condicao ? (
-        <div className="rounded-lg p-4 mb-4">
+    <div className="rounded-lg p-4 mb-4">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold mb-2">{profissional.nome}</h2>
+        <BiInfoCircle
+          title="Informações de contato"
+          className="cursor-pointer ml-2"
+          onClick={maisInformacoesF}
+        />
+        <BiSolidTrashAlt
+          className="cursor-pointer ml-2"
+          onClick={handleExcluir}
+        />
+        {isEditing ? (
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={handleAlterarSalvar}
+          >
+            Salvar
+          </button>
+        ) : (
           <FaEdit
             className="cursor-pointer ml-2"
-            onClick={handleAlterarCondicao} // Remova os parênteses aqui
+            onClick={handleAlterarCondicao}
           />
+        )}
+      </div>
+      {isEditing ? (
+        <>
           <label htmlFor="nome">
             Nome:{" "}
             <input
@@ -98,12 +110,7 @@ function DadosPessoais({
               name="nome"
               className="mb-4 text-black"
               value={profissional.nome}
-              onChange={(e) => {
-                setProfissional((prevState) => ({
-                  ...prevState,
-                  nome: e.target.value,
-                }));
-              }}
+              onChange={handleAlterarProfissional}
             />
           </label>
           <label htmlFor="email">
@@ -113,12 +120,7 @@ function DadosPessoais({
               type="text"
               className="mb-4 text-black"
               value={profissional.email}
-              onChange={(e) => {
-                setProfissional((prevState) => ({
-                  ...prevState,
-                  email: e.target.value,
-                }));
-              }}
+              onChange={handleAlterarProfissional}
             />
           </label>
           <label htmlFor="telefone">
@@ -128,88 +130,39 @@ function DadosPessoais({
               type="text"
               className="mb-4 text-black"
               value={profissional.telefone}
-              onChange={(e) => {
-                setProfissional((prevState) => ({
-                  ...prevState,
-                  telefone: e.target.value,
-                }));
-              }}
+              onChange={handleAlterarProfissional}
             />
           </label>
           <select
             name="especialidade"
             className="mb-4 text-black"
             value={profissional.especialidade}
-            onChange={(e) => {
-              setProfissional((prevState) => ({
-                ...prevState,
-                especialidade: e.target.value,
-              }));
-            }}
+            onChange={handleAlterarProfissional}
           >
-            <option value={Especialidade.SEGURANCA_CIBERNETICA}>
-              Segurança Cibernética
-            </option>
-            <option value={Especialidade.DESENVOLVIMENTO_DE_SOFTWARE}>
-              Desenvolvimento de Software
-            </option>
-            <option value={Especialidade.ANALISE_DE_DADOS}>
-              Análise de Dados
-            </option>
-            <option value={Especialidade.INFRAESTRUTURA}>Infraestrutura</option>
-            <option value={Especialidade.SUPORTE_TECNICO}>
-              Suporte Técnico
-            </option>
-            <option value={Especialidade.DESIGN}>Design</option>
-            <option value={Especialidade.MARKETING_DIGITAL}>
-              Marketing Digital
-            </option>
-            <option value={Especialidade.DEVOPS}>DevOps</option>
-            <option value={Especialidade.GESTAO_DE_TI}>Gestão de TI</option>
+            {Object.values(Especialidade).map((especialidade) => (
+              <option key={especialidade} value={especialidade}>
+                {formatarEspecialidade(especialidade)}
+              </option>
+            ))}
           </select>
-        </div>
+        </>
       ) : (
         <>
-          <div className="flex flex-col">
-            <img
-              src="http://lorempixel.com.br/150/150"
-              alt={profissional.nome}
-              className="w-full h-[150px]"
-            />
-          </div>
-          <div className="flex justify-between p-2">
-            <div className="flex-col">
-              <div className="flex items-center">
-                <h2 className="text-2xl font-bold mb-2">
-                  {profissional.nome}{" "}
-                  {/* Remova o elemento <h2> aninhado aqui */}
-                </h2>
-                <BiInfoCircle
-                  title="Informações de contato"
-                  className="cursor-pointer ml-2"
-                  onClick={maisInformacoesF}
-                />
-                <BiSolidTrashAlt
-                  className="cursor-pointer ml-2"
-                  onClick={() => handleExcluir(profissional.id)}
-                />
-                <FaEdit
-                  className="cursor-pointer ml-2"
-                  onClick={handleAlterarCondicao}
-                />
-              </div>
-              <p className="flex items-center">
-                <BiMailSend /> {profissional.email}
-              </p>
-              <p>{formatarEspecialidade(profissional.especialidade)}</p>
-              <p className="flex items-center">
-                <BiPhone /> {profissional.telefone}
-              </p>
-            </div>
-          </div>
+          <img
+            src="http://lorempixel.com.br/150/150"
+            alt={profissional.nome}
+            className="w-full h-[150px]"
+          />
+          <p className="flex items-center">
+            <BiMailSend /> {profissional.email}
+          </p>
+          <p>{formatarEspecialidade(profissional.especialidade)}</p>
+          <p className="flex items-center">
+            <BiPhone /> {profissional.telefone}
+          </p>
         </>
       )}
-    </>
+    </div>
   );
 }
 

@@ -1,91 +1,128 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { BiInfoCircle } from "react-icons/bi";
+import { FaEdit } from "react-icons/fa";
 import { alterar } from "../service/services";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function Endereco({ id, logradouro, bairro, cidade, uf, cep, condicao }: any) {
-  const [edicaoEnderecoProfissional, setEdicaoEnderecoProfissional] = useState({
-    id: id,
-    logradouro: logradouro,
-    bairro: bairro,
-    cidade: cidade,
-    uf: uf,
-    cep: cep,
+function Endereco({
+  id,
+  logradouro,
+  bairro,
+  cidade,
+  uf,
+  cep,
+  maisInformacoesF,
+}: {
+  id: number;
+  logradouro: string;
+  bairro: string;
+  cidade: string;
+  uf: string;
+  cep: string;
+  maisInformacoesF: () => void;
+}) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedAddress, setEditedAddress] = useState({
+    logradouro,
+    bairro,
+    cidade,
+    uf,
+    cep,
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleAlterarEndereco = (e: any) => {
+  const handleAlterarEndereco = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    setEdicaoEnderecoProfissional((prevState) => ({
-      ...prevState,
+    setEditedAddress((prevAddress) => ({
+      ...prevAddress,
       [name]: value,
     }));
   };
 
-  const endereco = {
-    id: id,
-    endereco: {
-      logradouro: edicaoEnderecoProfissional.logradouro,
-      bairro: edicaoEnderecoProfissional.bairro,
-      cidade: edicaoEnderecoProfissional.cidade,
-      uf: edicaoEnderecoProfissional.uf,
-      cep: edicaoEnderecoProfissional.cep,
-    },
+  const handleToggleEditing = () => {
+    setIsEditing(!isEditing);
   };
-  
-  if (!condicao) {
+
+  const handleSalvar = () => {
+    const endereco = {
+      id,
+      endereco: editedAddress,
+    };
     alterar(id, endereco);
-  }
+    setIsEditing(!isEditing);
+    location.reload();
+  };
 
   return (
     <div>
-      {condicao ? (
-        <div className="flex flex-col">
-          <input
-            type="text"
-            name="logradouro"
-            className="mb-4 text-black"
-            value={edicaoEnderecoProfissional.logradouro}
-            onChange={handleAlterarEndereco}
+      <div className="flex flex-col">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold mb-2">Endereço</h2>
+          <BiInfoCircle
+            title="Informações de contato"
+            className="cursor-pointer ml-2"
+            onClick={maisInformacoesF}
           />
-          <input
-            name="bairro"
-            type="text"
-            className="mb-4 text-black"
-            value={edicaoEnderecoProfissional.bairro}
-            onChange={handleAlterarEndereco}
-          />
-          <input
-            name="cidade"
-            type="text"
-            className="mb-4 text-black"
-            value={edicaoEnderecoProfissional.cidade}
-            onChange={handleAlterarEndereco}
-          />
-          <input
-            name="uf"
-            type="text"
-            className="mb-4 text-black"
-            value={edicaoEnderecoProfissional.uf}
-            onChange={handleAlterarEndereco}
-          />
-          <input
-            name="cep"
-            type="text"
-            className="mb-4 text-black"
-            value={edicaoEnderecoProfissional.cep}
-            onChange={handleAlterarEndereco}
-          />
+          {isEditing ? (
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded"
+              onClick={handleSalvar}
+            >
+              Salvar
+            </button>
+          ) : (
+            <FaEdit
+              className="cursor-pointer ml-2"
+              onClick={handleToggleEditing}
+            />
+          )}
         </div>
-      ) : (
-        <>
-          <p className="mb-4">Logradouro: {logradouro}</p>
-          <p className="mb-4">Bairro: {bairro}</p>
-          <p className="mb-4">Cidade: {cidade}</p>
-          <p className="mb-4">UF: {uf}</p>
-          <p className="mb-4">CEP: {cep}</p>
-        </>
-      )}
+        {isEditing ? (
+          <>
+            <input
+              type="text"
+              name="logradouro"
+              className="mb-4 text-black"
+              value={editedAddress.logradouro}
+              onChange={handleAlterarEndereco}
+            />
+            <input
+              name="bairro"
+              type="text"
+              className="mb-4 text-black"
+              value={editedAddress.bairro}
+              onChange={handleAlterarEndereco}
+            />
+            <input
+              name="cidade"
+              type="text"
+              className="mb-4 text-black"
+              value={editedAddress.cidade}
+              onChange={handleAlterarEndereco}
+            />
+            <input
+              name="uf"
+              type="text"
+              className="mb-4 text-black"
+              value={editedAddress.uf}
+              onChange={handleAlterarEndereco}
+            />
+            <input
+              name="cep"
+              type="text"
+              className="mb-4 text-black"
+              value={editedAddress.cep}
+              onChange={handleAlterarEndereco}
+            />
+          </>
+        ) : (
+          <>
+            <p className="mb-4">Logradouro: {logradouro}</p>
+            <p className="mb-4">Bairro: {bairro}</p>
+            <p className="mb-4">Cidade: {cidade}</p>
+            <p className="mb-4">UF: {uf}</p>
+            <p className="mb-4">CEP: {cep}</p>
+          </>
+        )}
+      </div>
     </div>
   );
 }
