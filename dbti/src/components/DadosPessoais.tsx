@@ -5,7 +5,7 @@ import {
   BiPhone,
   BiSolidTrashAlt,
 } from "react-icons/bi";
-import { alterar, excluir } from "../service/services";
+import { alterar, excluir } from "../services/services";
 import { Especialidade } from "../enum/Especialidades";
 import { FaEdit } from "react-icons/fa";
 

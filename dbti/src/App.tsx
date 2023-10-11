@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { consultar } from "./service/services";
+import { consultar } from "./services/services";
 import Endereco from "./components/Endereco";
 import DadosPessoais from "./components/DadosPessoais";
-import CadastrarProfissional from "./components/CadastrarProfissional";
+import CadastrarProfissional from "./pages/CadastrarProfissional";
 
 function App(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

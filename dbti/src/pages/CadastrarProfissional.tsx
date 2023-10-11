@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ProfissionalCadastro } from "../interface/ProfissionalCadastro";
+import { ProfissionalCadastro } from "../interfaces/ProfissionalCadastro";
 import { Especialidade } from "../enum/Especialidades";
-import { cadastrar } from "../service/services";
+import { cadastrar } from "../services/services";
 import validator from "validator";
 
 function CadastrarProfissional() {

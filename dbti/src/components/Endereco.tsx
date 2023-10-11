@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BiInfoCircle } from "react-icons/bi";
 import { FaEdit } from "react-icons/fa";
-import { alterar } from "../service/services";
+import { alterar } from "../services/services";
 
 function Endereco({
   id,

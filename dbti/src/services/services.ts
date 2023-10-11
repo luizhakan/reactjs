@@ -1,4 +1,4 @@
-import { ProfissionalCadastro } from "../interface/ProfissionalCadastro";
+import { ProfissionalCadastro } from "../interfaces/ProfissionalCadastro";
 
 export function consultar(url: string, query?: string) {
   if (query) {
