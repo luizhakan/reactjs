@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { consultar } from "./services/services";
 import Endereco from "./components/Endereco";
 import DadosPessoais from "./components/DadosPessoais";
-import CadastrarProfissional from "./pages/CadastrarProfissional";
+import BotaoLink from "./components/BotaoLink";
 
 function App(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,15 +29,11 @@ function App(): JSX.Element {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen p-8">
-      <div className="flex flex-col justify-center">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => {
-            window.location.href = "/cadastrar-profissional";
-          }}
-        >
-          Cadastrar profissional
-        </button>
+      <div className="flex flex-col justify-center items-center">
+        <BotaoLink
+          url="/cadastrar-profissional"
+          titulo="Cadastrar Profissional"
+        />
       </div>
       {profissionais && profissionais.length > 0 ? (
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
