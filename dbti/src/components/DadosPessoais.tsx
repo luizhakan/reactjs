@@ -111,7 +111,7 @@ function DadosPessoais({
               <input
                 type="text"
                 name="nome"
-                className="block w-full border border-gray-300 rounded-md p-2"
+                className="block w-full border border-gray-300 rounded-md p-2 text-black"
                 value={profissional.nome}
                 onChange={handleAlterarProfissional}
               />
@@ -121,7 +121,7 @@ function DadosPessoais({
               <input
                 name="email"
                 type="text"
-                className="block w-full border border-gray-300 rounded-md p-2"
+                className="block w-full border border-gray-300 rounded-md p-2 text-black"
                 value={profissional.email}
                 onChange={handleAlterarProfissional}
               />
@@ -131,14 +131,14 @@ function DadosPessoais({
               <input
                 name="telefone"
                 type="text"
-                className="block w-full border border-gray-300 rounded-md p-2"
+                className="block w-full border border-gray-300 rounded-md p-2 mb-2 text-black"
                 value={profissional.telefone}
                 onChange={handleAlterarProfissional}
               />
             </label>
             <select
               name="especialidade"
-              className="block w-full border border-gray-300 rounded-md p-2"
+              className="block w-full border border-gray-300 rounded-md p-2 text-black"
               value={profissional.especialidade}
               onChange={handleAlterarProfissional}
             >

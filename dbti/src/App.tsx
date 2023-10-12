@@ -29,7 +29,16 @@ function App(): JSX.Element {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen p-8">
-      <CadastrarProfissional />
+      <div className="flex flex-col justify-center">
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => {
+            window.location.href = "/cadastrar-profissional";
+          }}
+        >
+          Cadastrar profissional
+        </button>
+      </div>
       {profissionais && profissionais.length > 0 ? (
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         profissionais.map((profissional: any) => (

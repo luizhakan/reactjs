@@ -64,6 +64,7 @@ function CadastrarProfissional() {
       cadastrar(profissional);
       console.log(profissional);
       setCancelar(true);
+      location.href = "/";
     }
   }
 
@@ -241,7 +242,10 @@ function CadastrarProfissional() {
 
       <div className="mt-4 space-x-4">
         <button
-          onClick={() => setCancelar(!cancelar)}
+          onClick={() => {
+            setCancelar(!cancelar);
+            location.href = "/";
+          }}
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         >
           Cancelar
